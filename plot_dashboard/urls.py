@@ -1,21 +1,33 @@
-"""plot_dashboard URL Configuration
+# coding=utf-8
 
-The `urlpatterns` list routes URLs to views. For more information please see:
-    https://docs.djangoproject.com/en/1.11/topics/http/urls/
-Examples:
-Function views
-    1. Add an import:  from my_app import views
-    2. Add a URL to urlpatterns:  url(r'^$', views.home, name='home')
-Class-based views
-    1. Add an import:  from other_app.views import Home
-    2. Add a URL to urlpatterns:  url(r'^$', Home.as_view(), name='home')
-Including another URLconf
-    1. Import the include() function: from django.conf.urls import url, include
-    2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
-"""
 from django.conf.urls import url
-from django.contrib import admin
+
+from edc_constants.constants import UUID_PATTERN
+from plot.patterns import plot_identifier
+
+from .views import ListBoardView, LocationView
+
+app_name = 'plot_dashboard'
 
 urlpatterns = [
-    url(r'^admin/', admin.site.urls),
+    url(r'^listboard/'
+        '(?P<plot_identifier>' + plot_identifier + ')/'
+        '(?P<page>\d+)/',
+        ListBoardView.as_view(), name='listboard_url'),
+    url(r'^listboard/'
+        '(?P<plot_identifier>' + plot_identifier + ')/',
+        ListBoardView.as_view(), name='listboard_url'),
+    url(r'^listboard/'
+        '(?P<id>' + UUID_PATTERN.pattern + ')/'
+        '(?P<page>\d+)/',
+        ListBoardView.as_view(), name='listboard_url'),
+    url(r'^listboard/'
+        '(?P<id>' + UUID_PATTERN.pattern + ')/',
+        ListBoardView.as_view(), name='listboard_url'),
+    url(r'^listboard/(?P<page>\d+)/',
+        ListBoardView.as_view(), name='listboard_url'),
+    url(r'^listboard/',
+        ListBoardView.as_view(), name='listboard_url'),
+    url(r'^map/(?P<map_area>\w+)/(?P<plot_identifier>' + plot_identifier + ')/',
+        LocationView.as_view(), name='map_url'),
 ]
