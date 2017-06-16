@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 
 import os
 import sys
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -42,13 +43,15 @@ INSTALLED_APPS = [
     'edc_base.apps.AppConfig',
     'edc_appointment.apps.AppConfig',
     'edc_consent.apps.AppConfig',
-    'edc_map.apps.AppConfig',
-    'edc_device.apps.AppConfig',
     'edc_identifier.apps.AppConfig',
     'edc_protocol.apps.AppConfig',
+    'survey.apps.AppConfig',
+    'household.apps.AppConfig',
+    'member.apps.AppConfig',
     'plot.apps.AppConfig',
     'plot_dashboard.apps.AppConfig',
 ]
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -134,16 +137,22 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 KEY_PATH = os.path.join(BASE_DIR, 'crypto_fields')
 CURRENT_MAP_AREA = 'test_community'
-
+DEVICE_ID = '99'
+SURVEY_GROUP_NAME = 'test_survey'
+SURVEY_SCHEDULE_NAME = 'year-1'
 
 # and 'mysql' not in DATABASES.get('default').get('ENGINE'):
 if 'test' in sys.argv:
     MIGRATION_MODULES = {
         "django_crypto_fields": None,
         "edc_identifier": None,
+        "edc_protocol": None,
+        "edc_consent": None,
         "edc_appointment": None,
         "edc_registration": None,
         "edc_metadata": None,
+        "member": None,
+        "household": None,
         "plot": None,
         "survey": None,
         'admin': None,

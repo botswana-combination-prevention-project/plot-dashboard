@@ -7,12 +7,12 @@ from edc_dashboard.view_mixins import AppConfigViewMixin
 from edc_dashboard.view_mixins import ListboardFilterViewMixin
 from edc_dashboard.views import ListboardView as BaseListboardView
 
-from plot.models import Plot
 from plot.constants import RESIDENTIAL_HABITABLE
+from plot.model_wrappers import PlotWithLogEntryModelWrapper
+from plot.models import Plot
 
 from ..view_mixins import PlotQuerysetViewMixin
 from .listboard_filters import PlotListboardViewFilters
-from .wrappers import PlotWithLogEntryModelWrapper
 
 
 class ListBoardView(AppConfigViewMixin, EdcBaseViewMixin, ListboardFilterViewMixin,
