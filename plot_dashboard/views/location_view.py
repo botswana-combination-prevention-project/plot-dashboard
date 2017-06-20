@@ -10,6 +10,7 @@ from django.utils.html import format_html
 
 from edc_base.views import EdcBaseViewMixin
 from edc_map.views import MapImageView
+
 from plot.models import Plot
 
 
