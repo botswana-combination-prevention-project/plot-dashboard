@@ -67,10 +67,8 @@ class PlotQuerysetViewMixin:
         options = super().get_queryset_exclude_options(
             request, *args, **kwargs)
         app_config = django_apps.get_app_config('plot')
-        plot_identifiers = app_config.clinic_plot_identifiers
-        plot_identifiers.append(app_config.anonymous_plot_identifier)
         if not self.navbar_name == ANONYMOUS:
             options.update(
                 {'{}plot_identifier__in'.format(self.plot_lookup_prefix):
-                 plot_identifiers})
+                 [app_config.anonymous_plot_identifier]})
         return options
