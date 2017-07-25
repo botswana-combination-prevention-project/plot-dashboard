@@ -11,7 +11,7 @@ from plot.constants import RESIDENTIAL_HABITABLE
 from plot.model_wrappers import PlotWithLogEntryModelWrapper
 from plot.models import Plot
 
-from plot_dashboard.view_mixins import PlotQuerysetViewMixin
+from ..view_mixins import PlotQuerysetViewMixin
 from .listboard_filters import PlotListboardViewFilters
 
 
