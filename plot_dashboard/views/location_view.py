@@ -38,7 +38,7 @@ class LocationView(EdcBaseViewMixin, MapImageView):
             back_subject_url=reverse(
                 'plot_dashboard:listboard_url', kwargs=dict(
                     plot_identifier=self.kwargs.get('plot_identifier'))),
-            add_point_url=reverse('plot:plot_admin:plot_plot_add')
+            add_point_url=reverse('plot_admin:plot_plot_add')
         )
         # add new items to the json_data object
         data = dict(
