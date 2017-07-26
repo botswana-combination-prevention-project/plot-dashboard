@@ -7,7 +7,6 @@ from django.views.generic.base import ContextMixin
 
 from edc_device.constants import CLIENT, CENTRAL_SERVER, NODE_SERVER
 from edc_device.tests import DeviceTestHelper
-from edc_map.models import Container, InnerContainer
 from edc_map.tests import MapTestHelper
 from edc_map.site_mappers import site_mappers
 from plot.constants import ANONYMOUS
