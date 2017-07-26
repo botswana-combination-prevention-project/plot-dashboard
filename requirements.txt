@@ -17,7 +17,6 @@ git+https://github.com/botswana-harvard/edc-timepoint@develop#edc_timepoint
 git+https://github.com/botswana-harvard/edc-metadata@develop#edc-metadata
 git+https://github.com/botswana-harvard/edc-model-wrapper@develop#edc-model-wrapper
 git+https://github.com/botswana-harvard/edc-visit-tracking@develop#edc-visit-tracking
-git+https://github.com/botswana-harvard/edc-base-testg@develop#edc-base-test
 git+https://github.com/botswana-harvard/household@develop#household
 git+https://github.com/botswana-harvard/survey@develop#survey
 git+https://github.com/botswana-harvard/member@develop#member
