@@ -15,7 +15,7 @@ class PlotQuerysetViewMixin:
     @property
     def plot_lookup_prefix(self):
         plot_lookup_prefix = LOOKUP_SEP.join(self.plot_queryset_lookups)
-        return '{}__'.format(plot_lookup_prefix) if plot_lookup_prefix else ''
+        return f'{plot_lookup_prefix}__' if plot_lookup_prefix else ''
 
     @property
     def plot_identifiers(self):

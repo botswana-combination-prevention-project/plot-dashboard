@@ -11,6 +11,7 @@ class AppConfig(DjangoAppConfig):
     base_template_name = 'edc_base/base.html'
     # url_namespace = 'plot_dashboard'  # FIXME: is this still neeed??
     map_url_name = 'plot_dashboard:map_url'
+    admin_site_name = 'plot_admin'
 
 
 if settings.APP_NAME == 'plot_dashboard':
