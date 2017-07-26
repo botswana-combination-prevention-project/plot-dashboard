@@ -17,6 +17,7 @@ from ..view_mixins import PlotQuerysetViewMixin
 
 
 class ListBoardView:
+
     def get_queryset_exclude_options(self, request, *args, **kwargs):
         """Returns exclude options applied to every
         queryset.
