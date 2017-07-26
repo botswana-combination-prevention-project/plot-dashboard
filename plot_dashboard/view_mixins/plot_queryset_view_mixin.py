@@ -32,16 +32,16 @@ class PlotQuerysetViewMixin:
             pass
         return plot_identifiers
 
-    def add_device_filter_options(self, options=None, **kwargs):
+    def add_device_filter_options(self, options=None, plot_identifier=None, **kwargs):
         """Updates the filter options to limit the plots returned
         to those allocated to this client device_id.
         """
-        if kwargs.get('plot_identifier'):
+        if plot_identifier:
             options.update(
-                {'{}plot_identifier'.format(self.plot_lookup_prefix): kwargs.get('plot_identifier')})
+                {f'{self.plot_lookup_prefix}plot_identifier': plot_identifier})
         elif self.plot_identifiers:
             options.update(
-                {'{}plot_identifier__in'.format(self.plot_lookup_prefix): self.plot_identifiers})
+                {f'{self.plot_lookup_prefix}plot_identifier__in': self.plot_identifiers})
         return options
 
     def add_map_area_filter_options(self, options=None, **kwargs):
@@ -50,7 +50,7 @@ class PlotQuerysetViewMixin:
         """
         map_area = site_mappers.current_map_area
         options.update(
-            {'{}map_area'.format(self.plot_lookup_prefix): map_area})
+            {f'{self.plot_lookup_prefix}map_area': map_area})
         return options
 
     def get_queryset_filter_options(self, request, *args, **kwargs):
@@ -67,8 +67,8 @@ class PlotQuerysetViewMixin:
         options = super().get_queryset_exclude_options(
             request, *args, **kwargs)
         app_config = django_apps.get_app_config('plot')
-        if not self.navbar_name == ANONYMOUS:
+        if self.navbar_name != ANONYMOUS:
             options.update(
-                {'{}plot_identifier__in'.format(self.plot_lookup_prefix):
+                {f'{self.plot_lookup_prefix}plot_identifier__in':
                  [app_config.anonymous_plot_identifier]})
         return options
