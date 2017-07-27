@@ -14,9 +14,12 @@ from plot.tests import PlotTestHelper, TestPlotMapper
 from survey.tests import SurveyTestHelper
 
 from ..view_mixins import PlotQuerysetViewMixin
+from ..views import ListBoardView
+from pprint import pprint
+from edc_dashboard.view_mixins.app_config_view_mixin import AppConfigViewMixin
 
 
-class ListBoardView:
+class MyListBoardView:
 
     def get_queryset_exclude_options(self, request, *args, **kwargs):
         """Returns exclude options applied to every
@@ -37,13 +40,19 @@ class ListBoardView:
         return Q()
 
 
-class TestView(PlotQuerysetViewMixin, ListBoardView, ContextMixin):
+class TestView(PlotQuerysetViewMixin, MyListBoardView, ContextMixin):
 
     plot_queryset_lookups = ['plot']
     navbar_name = None
 
 
-@tag('1')
+class TestView2(PlotQuerysetViewMixin, MyListBoardView, AppConfigViewMixin, ContextMixin):
+
+    plot_queryset_lookups = ['plot']
+    navbar_name = None
+    app_config_name = 'plot_dashboard'
+
+
 class TestViewMixin(TestCase):
 
     plot_helper = PlotTestHelper()
@@ -155,3 +164,42 @@ class TestViewMixin(TestCase):
             request=self.view.request, **options)
         self.assertNotIn(
             'plot__plot_identifier__in', exclude_options)
+
+
+class TestUrls2(TestCase):
+
+    plot_helper = PlotTestHelper()
+    survey_helper = SurveyTestHelper()
+    device_helper = DeviceTestHelper()
+    map_helper = MapTestHelper()
+
+    def setUp(self):
+        self.device_helper.override_device(
+            device_id='99', device_role=CENTRAL_SERVER)
+
+        self.survey_helper.load_test_surveys()
+        django_apps.app_configs['edc_device'].device_id = '99'
+        site_mappers.registry = {}
+        site_mappers.loaded = False
+        site_mappers.register(TestPlotMapper)
+
+        self.subject_identifier = '12345'
+        self.view = TestView2()
+        request = RequestFactory()
+
+        self.view.request = request
+        self.view.request.META = {'HTTP_CLIENT_IP': '1.1.1.1'}
+        self.view.request.GET = request
+        self.view.object_list = None
+        self.view.kwargs = {}
+
+        map_area = 'test_community'
+        self.plot = self.plot_helper.make_plot(map_area=map_area)
+
+    @tag('1')
+    def test_url_names(self):
+        context = self.view.get_context_data()
+        self.assertIsNotNone(context.get('base_template_name'))
+        self.assertIsNotNone(context.get('plot_dashboard_listboard_url_name'))
+        self.assertIsNotNone(context.get('dashboard_url_name'))
+        self.assertIsNotNone(context.get('listboard_url_name'))

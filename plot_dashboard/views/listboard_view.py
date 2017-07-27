@@ -9,7 +9,6 @@ from edc_dashboard.views import ListboardView as BaseListboardView
 
 from plot.constants import RESIDENTIAL_HABITABLE
 from plot.model_wrappers import PlotWithLogEntryModelWrapper
-from plot.models import Plot
 
 from ..view_mixins import PlotQuerysetViewMixin
 from .listboard_filters import PlotListboardViewFilters
@@ -19,9 +18,9 @@ class ListBoardView(AppConfigViewMixin, EdcBaseViewMixin, ListboardFilterViewMix
                     PlotQuerysetViewMixin, BaseListboardView):
 
     app_config_name = 'plot_dashboard'
-    navbar_item_selected = 'plot'
+    navbar_item_selected = 'plot_dashboard'
     ordering = '-modified'
-    model = Plot
+    model = 'plot.plot'
     model_wrapper_class = PlotWithLogEntryModelWrapper
     listboard_view_filters = PlotListboardViewFilters()
 

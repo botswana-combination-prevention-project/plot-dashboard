@@ -13,7 +13,7 @@
 	</a>
 	
 	<a title="households" role="button" class="btn btn-sm btn-default{% if wrapped.household_count == 0 or wrapped.log_entry_set.count == 0 %} disabled{% endif %}"
-	  href="{% url household_listboard_url_name plot_identifier=wrapped.plot_identifier %}">
+	  href="{% url household_dashboard_listboard_url_name plot_identifier=wrapped.plot_identifier %}">
 	    <i class="fa fa-home fa-lg"></i>
 	</a>
 	
