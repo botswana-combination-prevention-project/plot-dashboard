@@ -5,6 +5,7 @@ from django.test.client import RequestFactory
 from django.test.utils import override_settings
 from django.views.generic.base import ContextMixin
 
+from edc_dashboard.view_mixins import AppConfigViewMixin
 from edc_device.constants import CLIENT, CENTRAL_SERVER, NODE_SERVER
 from edc_device.tests import DeviceTestHelper
 from edc_map.tests import MapTestHelper
@@ -14,9 +15,6 @@ from plot.tests import PlotTestHelper, TestPlotMapper
 from survey.tests import SurveyTestHelper
 
 from ..view_mixins import PlotQuerysetViewMixin
-from ..views import ListBoardView
-from pprint import pprint
-from edc_dashboard.view_mixins.app_config_view_mixin import AppConfigViewMixin
 
 
 class MyListBoardView:
