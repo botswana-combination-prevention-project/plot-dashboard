@@ -7,22 +7,21 @@ from edc_dashboard.view_mixins import AppConfigViewMixin
 from edc_dashboard.view_mixins import ListboardFilterViewMixin
 from edc_dashboard.views import ListboardView as BaseListboardView
 
-from plot.models import Plot
 from plot.constants import RESIDENTIAL_HABITABLE
+from plot.model_wrappers import PlotWithLogEntryModelWrapper
 
 from ..view_mixins import PlotQuerysetViewMixin
 from .listboard_filters import PlotListboardViewFilters
-from .wrappers import PlotWithLogEntryModelWrapper
 
 
 class ListBoardView(AppConfigViewMixin, EdcBaseViewMixin, ListboardFilterViewMixin,
                     PlotQuerysetViewMixin, BaseListboardView):
 
-    app_config_name = 'plot'
-    navbar_item_selected = 'plot'
+    app_config_name = 'plot_dashboard'
+    navbar_item_selected = 'plot_dashboard'
     ordering = '-modified'
-    model = Plot
-    model_wrapper_class = PlotWithLogEntryModelWrapper
+    model = 'plot.plot'
+    model_wrapper_cls = PlotWithLogEntryModelWrapper
     listboard_view_filters = PlotListboardViewFilters()
 
     @method_decorator(login_required)
@@ -33,5 +32,5 @@ class ListBoardView(AppConfigViewMixin, EdcBaseViewMixin, ListboardFilterViewMix
         context = super().get_context_data(**kwargs)
         context.update(
             RESIDENTIAL_HABITABLE=RESIDENTIAL_HABITABLE,
-            map_url_name=django_apps.get_app_config('plot').map_url_name)
+            map_url_name=django_apps.get_app_config('plot_dashboard').map_url_name)
         return context
