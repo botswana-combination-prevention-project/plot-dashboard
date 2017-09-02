@@ -1,11 +1,10 @@
 from django.apps import apps as django_apps
 from django.db.models.constants import LOOKUP_SEP
 
+from edc_constants.constants import ANONYMOUS
 from edc_device.constants import CLIENT, SERVER, NODE_SERVER
 from edc_map.models import InnerContainer
 from edc_map.site_mappers import site_mappers
-
-from plot.constants import ANONYMOUS
 
 
 class PlotQuerysetViewMixin:

@@ -1,11 +1,10 @@
 # coding=utf-8
 
 from django.conf.urls import url
-
 from edc_constants.constants import UUID_PATTERN
-from plot.patterns import plot_identifier
 
 from .views import ListBoardView, LocationView
+from .patterns import plot_identifier
 
 app_name = 'plot_dashboard'
 
