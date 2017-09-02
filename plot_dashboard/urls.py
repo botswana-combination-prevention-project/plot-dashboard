@@ -5,6 +5,7 @@ from edc_constants.constants import UUID_PATTERN
 
 from .views import ListBoardView, LocationView
 from .patterns import plot_identifier
+from django.conf import settings
 
 app_name = 'plot_dashboard'
 
@@ -30,3 +31,9 @@ urlpatterns = [
     url(r'^map/(?P<map_area>\w+)/(?P<plot_identifier>' + plot_identifier + ')/',
         LocationView.as_view(), name='map_url'),
 ]
+
+
+if settings.APP_NAME == 'plot_dashboard':
+    from .tests.admin import plot_admin
+    urlpatterns = ([url(r'^admin/', plot_admin.urls)]
+                   + urlpatterns)

@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'edc_device.apps.AppConfig',
     'edc_identifier.apps.AppConfig',
     'edc_protocol.apps.AppConfig',
+    'edc_model_wrapper.apps.AppConfig',
     'survey.apps.AppConfig',
     'plot.apps.AppConfig',
     'plot_dashboard.apps.EdcMapAppConfig',
