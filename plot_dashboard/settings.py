@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 
 import os
 import sys
+from edc_device.constants import CENTRAL_SERVER, CLIENT
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -136,7 +137,8 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 KEY_PATH = os.path.join(BASE_DIR, 'crypto_fields')
 CURRENT_MAP_AREA = 'test_community'
-DEVICE_ID = '99'
+DEVICE_ID = '22'
+DEVICE_ROLE = CLIENT
 SURVEY_GROUP_NAME = 'test_survey'
 SURVEY_SCHEDULE_NAME = 'year-1'
 CURRENT_MAP_AREA = 'test_community'
