@@ -194,7 +194,6 @@ class TestUrls2(TestCase):
         map_area = 'test_community'
         self.plot = self.plot_helper.make_plot(map_area=map_area)
 
-    @tag('1')
     def test_url_names(self):
         context = self.view.get_context_data()
         self.assertIsNotNone(context.get('base_template_name'))
