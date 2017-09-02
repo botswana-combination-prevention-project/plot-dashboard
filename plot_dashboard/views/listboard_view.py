@@ -1,15 +1,13 @@
 from django.apps import apps as django_apps
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
-
 from edc_base.view_mixins import EdcBaseViewMixin
 from edc_dashboard.view_mixins import AppConfigViewMixin
 from edc_dashboard.view_mixins import ListboardFilterViewMixin
 from edc_dashboard.views import ListboardView as BaseListboardView
-
 from plot.constants import RESIDENTIAL_HABITABLE
-from plot.model_wrappers import PlotWithLogEntryModelWrapper
 
+from ..model_wrappers import PlotWithLogEntryModelWrapper
 from ..view_mixins import PlotQuerysetViewMixin
 from .listboard_filters import PlotListboardViewFilters
 

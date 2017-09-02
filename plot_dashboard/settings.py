@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 
 import os
 import sys
+from edc_device.constants import CENTRAL_SERVER, CLIENT
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -44,6 +45,7 @@ INSTALLED_APPS = [
     'edc_device.apps.AppConfig',
     'edc_identifier.apps.AppConfig',
     'edc_protocol.apps.AppConfig',
+    'edc_model_wrapper.apps.AppConfig',
     'survey.apps.AppConfig',
     'plot.apps.AppConfig',
     'plot_dashboard.apps.EdcMapAppConfig',
@@ -136,6 +138,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 KEY_PATH = os.path.join(BASE_DIR, 'crypto_fields')
 CURRENT_MAP_AREA = 'test_community'
 DEVICE_ID = '99'
+DEVICE_ROLE = CENTRAL_SERVER
 SURVEY_GROUP_NAME = 'test_survey'
 SURVEY_SCHEDULE_NAME = 'year-1'
 CURRENT_MAP_AREA = 'test_community'
