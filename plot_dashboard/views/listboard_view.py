@@ -1,4 +1,5 @@
 from django.apps import apps as django_apps
+from django.conf import settings
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from edc_base.view_mixins import EdcBaseViewMixin
@@ -16,7 +17,10 @@ class ListBoardView(AppConfigViewMixin, EdcBaseViewMixin, ListboardFilterViewMix
                     PlotQuerysetViewMixin, BaseListboardView):
 
     app_config_name = 'plot_dashboard'
-    navbar_item_selected = 'plot_dashboard'
+
+    navbar_name = settings.MAIN_NAVBAR_NAME
+    navbar_selected_item = 'plot'
+
     ordering = '-modified'
     model = 'plot.plot'
     model_wrapper_cls = PlotWithLogEntryModelWrapper

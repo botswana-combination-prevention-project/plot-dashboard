@@ -143,6 +143,8 @@ SURVEY_GROUP_NAME = 'test_survey'
 SURVEY_SCHEDULE_NAME = 'year-1'
 CURRENT_MAP_AREA = 'test_community'
 
+MAIN_NAVBAR_NAME = 'bcpp'
+
 if 'test' in sys.argv:
 
     class DisableMigrations:
