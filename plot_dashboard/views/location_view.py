@@ -4,7 +4,7 @@ from django.apps import apps as django_apps
 from django.contrib import admin
 from django.contrib.auth.decorators import login_required
 from django.core.serializers.json import DjangoJSONEncoder
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 from django.utils.decorators import method_decorator
 from django.utils.html import format_html
 from edc_base.views import EdcBaseViewMixin
